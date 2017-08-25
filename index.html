@@ -39,12 +39,14 @@
         </aside>
       </section>
 
+      <!-- Vertical slides -->
       <section>
 
-        <section data-background-image="img/compiler.jpg">
+        <section>
           <h2>Compiler</h2>
 
           <aside class="notes">
+            TODO: Особенности компиляции JS.
           </aside>
         </section>
 
@@ -54,10 +56,12 @@
           <p class="fragment fade-up"><code>var | a | = | 2 | ;</code></p>
 
           <aside class="notes">
+            TODO: пояснения
           </aside>
         </section>
         <section>
           <h3>Parsing</h3>
+          <!-- TODO: Пример AST дерева JS -->
 
           <aside class="notes">
           </aside>
@@ -71,9 +75,303 @@
 
       </section>
 
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Scope Lookup</h2>
+
+          <aside class="notes">
+            TODO: Рассказать про LHS и RHS lookup. Как это влияет на ошибки выполнения.
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: Пример объясняющий LHS и RHS -->
+
+          <aside class="notes">
+            TODO: пояснения
+          </aside>
+        </section>
+
+      </section>
+
       <section data-background-image="img/building.jpg">
         <h2>Nested Scopes</h2>
+
+        <aside class="notes">
+          TODO: Множество областей видимости вложенных одна в другую. Пример с этажами здания
+        </aside>
       </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section data-background-image="img/js.jpg">
+          <h2>Lexical Scope</h2>
+
+          <aside class="notes">
+            TODO: Разница между лексическим и динамическим скоупом
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: Пример кода с вложенными скоупами и разбор поиска переменных в них движком -->
+
+          <aside class="notes">
+            TODO: Собственно пошаговый разбор примера
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section data-background-image="img/js.jpg">
+          <h2>Cheating Lexical Scope</h2>
+
+          <aside class="notes">
+            TODO: Есть способоы взломать скоуп
+          </aside>
+        </section>
+
+        <section>
+          <h2>eval</h2>
+          <!-- TODO: пример кода с eval -->
+
+          <aside class="notes">
+            TODO: Кратко что он делает
+          </aside>
+        </section>
+
+        <section>
+          <h2>with</h2>
+          <!-- TODO: пример кода с with -->
+
+          <aside class="notes">
+            TODO: Кратко что он делает
+          </aside>
+        </section>
+
+        <section>
+          <h2>Never do this</h2>
+
+          <aside class="notes">
+            TODO: Почему это плохо
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Why scope?</h2>
+
+          <aside class="notes">
+            TODO: Зачем нужен скоуп?
+          </aside>
+        </section>
+
+        <section>
+          <h2>Principle of Least Privilege</h2>
+          <!-- TODO: Пример -->
+
+          <aside class="notes">
+            TODO: Что и зачем
+          </aside>
+        </section>
+
+        <section>
+          <h2>Collision Avoidance</h2>
+          <!-- TODO: Пример -->
+
+          <aside class="notes">
+            TODO: Что и зачем. Тут про глобальное пространство имен
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Functions As Scopes</h2>
+          <!-- TODO: Пример с прятаньем в функцию -->
+
+          <aside class="notes">
+            TODO: все понятно вроде
+          </aside>
+        </section>
+
+        <section>
+          <h2>IIFE</h2>
+          <p>Immediately Invoked Function Expressions</p>
+          <!-- TODO: Улучшаем до IIFE -->
+
+          <aside class="notes">
+            TODO: Зачем они нужны
+          </aside>
+        </section>
+
+        <section>
+          <h2>Function expressions vs. Function declarations</h2>
+          <!-- TODO: Куча примеров функциональных выражений -->
+
+          <aside class="notes">
+            TODO: В чем разница
+          </aside>
+        </section>
+
+        <section>
+          <h2>Anonymous vs. Named</h2>
+          <!-- TODO: Улучшаем до IIFE -->
+
+          <aside class="notes">
+            TODO: Зачем именновать функции
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Blocks As Scopes</h2>
+          <p class="fragment fade-up"><code>with</code></p>
+          <p class="fragment fade-up"><code>try/catch</code></p>
+          <p class="fragment fade-up"><code>let, const</code></p>
+
+          <aside class="notes">
+            TODO: Ну вообще то нет такого в JS. Ну почти
+          </aside>
+        </section>
+
+        <section>
+          <h2>let, const</h2>
+
+          <aside class="notes">
+            TODO: Примеры. Механика работы
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Hoisting</h2>
+
+          <aside class="notes">
+            TODO: Что это?
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: примеры -->
+
+          <aside class="notes">
+            TODO: объяснения
+          </aside>
+        </section>
+
+        <section>
+          <h2>Functions First</h2>
+          <!-- TODO: примеры  -->
+
+          <aside class="notes">
+            TODO: Как работает. Объяснения примеров
+          </aside>
+        </section>
+
+      </section>
+
+      <!-- Vertical slides -->
+      <section>
+
+        <section>
+          <h2>Closure</h2>
+          <!-- TODO: Определение -->
+
+          <aside class="notes">
+            TODO: Навести страху, потом сказать, что все просто
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: Простой пример -->
+
+          <aside class="notes">
+            TODO: объяснения
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: реальные примеры  -->
+          <!-- TODO: реальные примеры  -->
+          <!-- TODO: реальные примеры  -->
+
+          <aside class="notes">
+            TODO: Объяснения примеров
+          </aside>
+        </section>
+
+        <section>
+          <!-- TODO: классический пример с циклом -->
+
+          <aside class="notes">
+            TODO: Объяснение
+          </aside>
+        </section>
+
+        <section>
+          <h2>Module Pattern</h2>
+          <!-- TODO: определение  -->
+
+          <aside class="notes">
+            TODO: Определение. Объяснение
+          </aside>
+        </section>
+
+        <section>
+          <h2>Today And Future Modules</h2>
+
+          <aside class="notes">
+            TODO: Объяснение примеров
+          </aside>
+        </section>
+
+      </section>
+
+      <section data-background-image="img/review.jpg">
+        <h1>Review</h1>
+
+        <p class="fragment fade-up">
+          Scope
+        </p>
+        <p class="fragment fade-up">
+          Lexical Scope
+        </p>
+        <p class="fragment fade-up">
+          Hoisting
+        </p>
+        <p class="fragment fade-up">
+          Closure
+        </p>
+        <p class="fragment fade-up">
+          Module Pattern
+        </p>
+
+        <aside class="notes">
+          TODO: Определения, краткий пересказ
+        </aside>
+      </section>
+
     </div>
   </div>
 
@@ -103,6 +401,10 @@
           }
         }
       ]
+    });
+
+    Reveal.configure({
+      slideNumber: true
     });
   </script>
 </body>
