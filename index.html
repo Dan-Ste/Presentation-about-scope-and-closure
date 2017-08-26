@@ -27,81 +27,120 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h1>Scope <br>&<br> Closure</h1>
-        <p>in js ofc</p>
+        <h1>Scope <br>&<br> Closures</h1>
       </section>
 
-      <section data-background-image="img/engine.jpg">
-        <h2>JS Engine</h2>
+      <section data-markdown>
+
+        <textarea data-template>
+          ## Scope
+          Набор правил, которые определяют где и как искать переменную по ее имени <!-- .element: class="fragment" -->
+          
+          Область программы, в пределах которой идентификатор (имя) некоторой переменной продолжает быть связанным с этой переменной и возвращать её значение <!-- .element: class="fragment" -->
+
+          Note: Возможность хранить значения в переменных, а впоследствии получать эти значения - одна из фундаментальных парадигм почти
+          всех языков программирования. Мы называем это состоянием. И без этого программы были бы не очень интересны и полезны,
+          хотя они бы и выполняли какие-то действия. Но где эти переменные хранятся в программе? И как наша программа находит
+          их, когда они ей нужны? Набор правил которые определяют где и как искать переменные мы называем областью видимости.
+        </textarea>
+
+      </section>
+
+      <section>
+        <h4>Как идентификаторы попадают в scope?</h4>
+        <img src="img/Compiler_time.png">
 
         <aside class="notes">
-          Вопреки общепринятому мнению, JS яызк не интерпритируемый, а компилируемый.
+          JS комилируется в рантайме. После лексического аналаиза и построения AST, но перед тем, как сгенерировать код для выполнения
+          Движком, компилятор привязывает идентификаторы переменных в области видимости в которых они были объявлены. Здесь
+          была объявлена переменная 'a' в глобальной области видимости (потому что других нет).
         </aside>
       </section>
 
-      <!-- Vertical slides -->
       <section>
 
         <section>
-          <h2>Compiler</h2>
+          <h4>Как идентификаторы находятся в SCOPE?</h4>
+          <p class="fragment fade-up">LHS = RHS</p>
+          <p class="fragment fade-up">LHS: &nbsp;<code>var a = 2;</code></p>
+          <p class="fragment fade-up">RHS: &nbsp;<code>var a = b + c;</code></p>
+          <p class="fragment fade-up">RHS: &nbsp;<code>console.log(a)</code></p>
 
           <aside class="notes">
-            TODO: Особенности компиляции JS.
+            После этого генерируется код и исполняется Движком. Когда Движок наталкивается на переменную он ищет ее в скоупе. Поиск может
+            осуществляться по двум разным правилам. Левосторонний и правосторонний поиск. Стороны относительно чего? Относительно
+            оператора присваивания. Но вообще-то правосторонний поиск не всегда связан с оператором присваивания. Можно сказать
+            он не-левосторонний. То есть левосторонний поиск осуществляется с целью присвоения в переменную, а правосторонний
+            возвращения значения переменной
+            </br>
           </aside>
         </section>
 
         <section>
-          <h3>Tokenizing/Lexing</h3>
-          <p class="fragment fade-up"><code>var a = 2;</code></p>
-          <p class="fragment fade-up"><code>var | a | = | 2 | ;</code></p>
+          <h2>Example</h2>
+          <pre><code data-trim data-noescape>
+              function foo(a) {
+                var b = a;
+                return a + b;
+              }
+              
+              var c = foo( 2 );
+          </code></pre>
 
           <aside class="notes">
-            TODO: пояснения
+            В этом примере есть 3 LHS - 'var c', 'a = 2' (скрытое присвоение в аргументе функции) и 'var b'. А также 4 RHS - 'foo(..)',
+            '= a' , 'a +', '+ b'
           </aside>
         </section>
+
+        <section data-background-image="img/building.jpg">
+          <h2>Nested Scopes</h2>
+          <pre><code data-trim data-noescape>
+              function foo(a) {
+                console.log( a + b );
+              }
+              
+              var b = 2;
+              
+              foo( 2 ); // 4
+          </code></pre>
+
+          <aside class="notes">
+            Так же как функции или блоки могут быть вложенны в другие блоки или функции, области видимости вложенны в другие области
+            видимости. И если переменная не была найдена в текущей области видимости, то движок будет искать ее во внешних
+            областях видимости, пока не доберется до самый верхней, называемой глобальной. Хорошой метафорой может служить
+            многоэтажное здание, в котором текущая область видимости это первый этаж и если мы не найдем переменную на этом
+            этаже, то будем подниматься выше по этажам ищя ее, вплоть до последнего этажа, который является глобальной областью
+            видимости. В данном примере переменной b нет в области видимости фунции foo, поэтому Движок ищет и находит ее
+            в глобальной области видимости со значением 2. Кстати для ее поиска был применен правосторонний поиск.
+          </aside>
+        </section>
+
         <section>
-          <h3>Parsing</h3>
-          <!-- TODO: Пример AST дерева JS -->
+          <h2>Errors</h2>
+          <pre><code data-trim data-noescape>
+              function foo(a) {
+                console.log( a + b );
+                b = a;
+              }
+              
+              foo( 2 );
+            </code></pre>
+          <p class="fragment fade-up">RHS => <code><mark>ReferenceError</mark></code></p>
+          <p class="fragment fade-up">LHS => leaked global variable</p>
+          <p class="fragment fade-up">LHS + <code>'strict mode'</code>=> <code><mark>ReferenceError</mark></code></p>
+          <p class="fragment fade-up"><code>"don't call me"()</code>=> <code><mark>TypeError</mark></code></p>
 
           <aside class="notes">
-          </aside>
-        </section>
-        <section>
-          <h3>Code generation</h3>
-
-          <aside class="notes">
-          </aside>
-        </section>
-
-      </section>
-
-      <!-- Vertical slides -->
-      <section>
-
-        <section>
-          <h2>Scope Lookup</h2>
-
-          <aside class="notes">
-            TODO: Рассказать про LHS и RHS lookup. Как это влияет на ошибки выполнения.
-          </aside>
-        </section>
-
-        <section>
-          <!-- TODO: Пример объясняющий LHS и RHS -->
-
-          <aside class="notes">
-            TODO: пояснения
+            Зачем нам нужно это знать какой тип поиска был применен? Потому что эти два типа поиска ведут себя по разному, если переменная
+            не была объявлена и не найдена ни в одной из областей видимости. В случае RHS это приведет к ошибки 'ReferenceError',
+            выброшенной Движком. В случае LHS это приведет к объявлению переменной в глобальной области видимости. Но с директивой
+            'strict mode' также к 'ReferenceError'. Если RHS поиск выполнился успешно, но мы попытались сделать с этим значением
+            что-то невозможное, например вызвать не функцию как функцию или обратились к свойсвам null или undefined, то
+            мы получим ошибку TypeError
           </aside>
         </section>
 
-      </section>
-
-      <section data-background-image="img/building.jpg">
-        <h2>Nested Scopes</h2>
-
-        <aside class="notes">
-          TODO: Множество областей видимости вложенных одна в другую. Пример с этажами здания
-        </aside>
       </section>
 
       <!-- Vertical slides -->
