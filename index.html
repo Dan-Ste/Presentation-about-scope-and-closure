@@ -146,19 +146,55 @@
       <!-- Vertical slides -->
       <section>
 
-        <section data-background-image="img/js.jpg">
+        <section>
           <h2>Lexical Scope</h2>
+          <img src="img/lexical_scope.png" alt="lexical scope">
 
           <aside class="notes">
-            TODO: Разница между лексическим и динамическим скоупом
+            JS имеет лексическую область видимости. Это значит, что она основано на том, где переменные и блоки областей видимости были
+            написаны самим автором кода. Это парсится во время лексческого анализа, поэтому и имеет название лексической
+            области видимости.
+
           </aside>
         </section>
 
         <section>
-          <!-- TODO: Пример кода с вложенными скоупами и разбор поиска переменных в них движком -->
+          <p>Lexical scope - write-time</p>
+          <p>Dynamyc scope - runtime</p>
 
           <aside class="notes">
-            TODO: Собственно пошаговый разбор примера
+            В противоположность этому существует концепция динамической области видимости. При таком подходе, не важно где автор написал
+            функцию, а важно откуда она была вызвана во время исполнения кода. Такой подход используетмся например в bash
+            скриптах.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Cheating lexical</h2>
+          <p class="fragment fade-up"><code>eval</code></p>
+          <p class="fragment fade-up"><code>with</code></p>
+
+          <aside class="notes">
+            Но в JS существуют способы взломать лексическую область видимости. Это можно сделать с помощью функции eval или ключевого
+            слова with
+          </aside>
+        </section>
+
+        <section>
+          <h2>eval</h2>
+          TODO: example with eval
+
+          <aside class="notes">
+            TODO: What is eval all about?
+          </aside>
+        </section>
+
+        <section>
+          <h2>with</h2>
+          TODO: exaple with with (pun intendent)
+
+          <aside class="notes">
+            TODO: What is with all about?
           </aside>
         </section>
 
