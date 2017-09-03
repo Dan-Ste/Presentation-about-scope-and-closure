@@ -466,16 +466,33 @@
       <!-- Vertical slides -->
       <section>
 
-        <section>
-          <h2>Hoisting</h2>
+        <section data-markdown>
 
-          <aside class="notes">
-            TODO: Что это?
-          </aside>
+          <textarea data-template>
+            ## Hoisting
+            `var a = 2;` <!-- .element: class="fragment" -->
+            `var a & a = 2` <!-- .element: class="fragment" -->
+
+            Note: Кажется, что код в JS интерпритируется строка за строкой снизу вверх. Но это правда только отчасти. 
+            1. Вместо того, чтобы воспринимать это утверждение как одно целое, движок JS видит его как два различных
+            2. Объявление переменной происходит сначала во время компиляции. А присвоение во время выполнения программы Движком.
+          </textarea>
         </section>
 
         <section>
-          <!-- TODO: примеры -->
+          <pre><code data-trim data-noescape>
+            a = 2;
+            
+            var a;
+            
+            console.log( a );
+          </code></pre>
+
+          <pre><code data-trim data-noescape>
+            console.log( a );
+            
+            var a = 2;
+          </code></pre>
 
           <aside class="notes">
             TODO: объяснения
