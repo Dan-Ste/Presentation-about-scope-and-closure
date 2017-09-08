@@ -447,7 +447,6 @@
             ```
           - `let & const`
 
-
             Note: Хотя в JS нет блочной области видимости, как в во многих других языках, есть механизмы, которые все же позволяют его сэмулировать.
             Основной смысл использования блочной области видимости такой же как и функциональной. Оставлять переменные приватными
             для участка кода, в котором они используются и скрывать их от кода из внешних областей видимости. До спецификации
@@ -560,36 +559,110 @@
 
         <section>
           <h2>Closure</h2>
-          <!-- TODO: Определение -->
+          <p>Замыкание это когда функция запоминает и имеет доступ к своей лексической области видимости, даже если она была
+            вызвана вне этой области.</p>
 
           <aside class="notes">
-            TODO: Навести страху, потом сказать, что все просто
+            Хотя кажется, что замыкания это какая-то сложная концепция, которая доступна для понимания лишь немногим, на самом деле мы
+            используем ее постоянно и она связана с понятием лексической области видимости, о которой я говорил и которая
+            задается в момент написания кода.
           </aside>
         </section>
 
         <section>
-          <!-- TODO: Простой пример -->
+          <h2>Creating a closure</h2>
+          <pre><code data-trim data-noescape>
+                function getTomatoes() {
+                  var numberOfTomatoes = 22;
+                
+                  function garden() { 
+                    ('There are ' + numberOfTomatoes + ' tomatoes in the garden');
+                  }
+                  
+                  garden();
+                }
+                
+                getTomatoes() // --> There are 22 tomatoes in the garden
+              </code></pre>
 
           <aside class="notes">
-            TODO: объяснения
+            В данном примере создается замыкание при вызове функции garden. Эта функция имеет замыкание на область видимости функции
+            getTomatoes и всех областей видимости выше. Но из определения замыкания мы знаем, что функция имеет доступ к
+            лексической области видимости даже если она была вызвана вне этой области. То есть здесь мы просто создаем замыкание,
+            но не используем всю его силу.
           </aside>
         </section>
 
         <section>
-          <!-- TODO: реальные примеры  -->
-          <!-- TODO: реальные примеры  -->
-          <!-- TODO: реальные примеры  -->
+          <h2>Exercising a closure</h2>
+          <pre><code data-trim data-noescape>
+                function getTomatoes() {
+                  var numberOfTomatoes = 22;
+                
+                  return function garden() {
+                    console.log('There are ' + numberOfFairies + ' tomatoes in the garden');
+                  }
+                }
+                
+                var gardenMagic = getTomatoes() 
+                
+                gardenMagic(); // --> There are 22 tomatoes in the garden
+            </code></pre>
 
           <aside class="notes">
-            TODO: Объяснения примеров
+            Но если мы перепишем пример таким образом, то увидем всю мощь замыканий в действии. Когда мы вызывает функцию gardenMagic,
+            мы на самом деле вызываем функцию garden, которая вернулась при вызове getTomatoes. Таким образом функция garden
+            вызывается вне совей лексической области видимости и тем не менее она запомнила эту область видимости, в которой
+            находится переменная numberOfTomatoes и имеет к ней доступ. В итоге в консоль выводится нужное сообщение. Никакой
+            черной магии, только правила лексической области видимости в действии.
           </aside>
         </section>
 
         <section>
-          <!-- TODO: классический пример с циклом -->
+          <h2>Canonical loop example</h2>
+          <pre><code data-trim data-noescape>
+                for (var i=1; i<=5; i++) {
+                  setTimeout( function timer(){
+                    console.log( i );
+                  }, i*1000 );
+                }
+            </code></pre>
 
           <aside class="notes">
-            TODO: Объяснение
+            Еще одним классическим примером для демонстрации замыкания является цикл с таймером внутри.
+          </aside>
+        </section>
+
+        <section>
+          <h2>IIFE solution</h2>
+          <pre><code data-trim data-noescape>
+                for (var i=1; i<=5; i++) {
+                  (function(){
+                    var j = i;
+                    setTimeout( function timer(){
+                      console.log( j );
+                    }, j*1000 );
+                  })();
+                }
+            </code></pre>
+
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+        <section>
+          <h2>Block scoping solution</h2>
+          <pre><code data-trim data-noescape>
+                for (let i=1; i<=5; i++) {
+                  setTimeout( function timer(){
+                    console.log( i );
+                  }, i*1000 );
+                }
+            </code></pre>
+
+          <aside class="notes">
+
           </aside>
         </section>
 
@@ -599,14 +672,6 @@
 
           <aside class="notes">
             TODO: Определение. Объяснение
-          </aside>
-        </section>
-
-        <section>
-          <h2>Today And Future Modules</h2>
-
-          <aside class="notes">
-            TODO: Объяснение примеров
           </aside>
         </section>
 
