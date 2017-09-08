@@ -369,14 +369,35 @@
         <section>
           <h2>Function expressions vs. Function declarations</h2>
           <pre><code data-trim data-noescape>
+              /* FUNCTION DECLARATION */
               function foo() {
                 console.log("I'm function declaration");
               }
 
-              setTimeout( function(){
-                console.log("I'm function expression");
-                console.log("I waited 1 second!");
-              }, 1000 );
+              /* FUNCTION EXPRESSIONS */
+              var x = function () {
+                console.log('I'm an anonymous function expression')
+              }
+              
+              var y = function doMagic () {
+                console.log('I'm a named function expression')
+              }
+              
+              (function () {
+                console.log('I'm a self-invoking function expression')
+              })()
+              
+              (function doMagic () {
+                console.log('I'm a named self-invoking function expression')
+              })()
+              
+              setTimeout(function () {
+                console.log('I'm also an anonymous function expression)
+              }, 1000);
+              
+              setTimeout(function timeoutHandler () {
+                console.log('I'm also a named function expression)
+              }, 1000);
               </code></pre>
 
           <aside class="notes">
